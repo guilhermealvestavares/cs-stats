@@ -1,4 +1,4 @@
-const ENDPOINT_INFO_USER = 'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/'
+const ENDPOINT_INFO_USER = 'https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/'
 const ENDPOINT_INFO_ACHIEVEMENTS = 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/'
 const ENDPOINT_INFO_HOURS_PLAYED = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/'
 const ENDPOINT_INFO_BAN = 'http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/'
