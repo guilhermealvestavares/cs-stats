@@ -9,13 +9,17 @@ const buttonConsult = document.querySelector('.buttonConsult');
 const fieldInfo = document.querySelectorAll('.item-data');
 const inputSteamId = document.querySelector('.inputID');
 
+inputSteamId.value = '76561198145496259';
+
 const RequestConfig = {
   options: {
     method: 'GET',
     headers: {
       'Access-Control-Allow-Origin':'*',
-      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-      'mode': 'no-cors'
+      'Access-Control-Allow-Headers': '*',
+      "Content-Type": "application/json",
+      'mode': 'no-cors',
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
   },
 };
@@ -24,10 +28,10 @@ const RequestConfig = {
 buttonConsult.addEventListener('click', () => {
   const valueInputSteamId = document.querySelector('.inputID').value;
   
-  fetch(`${ENDPOINT_INFO_USER}?key=${KEY_API_STEAM}&steamid=${valueInputSteamId}&format=json&appid=${APP_ID}`, RequestConfig.options).then(response =>{
-    return response.json();
+  fetch('https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?key=D1108BDE58274899E11D3C55998E2D60&steamid=76561198145496259&format=json&appid=730', RequestConfig.options).then(response =>{
+    console.log(response);
   }).then(data =>
   {
-    console.log(response.data);
+    console.log(data);
   })
 })
