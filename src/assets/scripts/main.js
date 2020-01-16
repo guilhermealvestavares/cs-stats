@@ -1,37 +1,42 @@
 const ENDPOINT_INFO_USER = 'https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/'
-const ENDPOINT_INFO_ACHIEVEMENTS = 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/'
-const ENDPOINT_INFO_HOURS_PLAYED = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/'
-const ENDPOINT_INFO_BAN = 'http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/'
-const KEY_API_STEAM = 'D1108BDE58274899E11D3C55998E2D60';
-const APP_ID = '730';
+const ENDPOINT_INFO_ACHIEVEMENTS = 'https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/'
+const ENDPOINT_INFO_HOURS_PLAYED = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/'
+const ENDPOINT_INFO_BAN = 'https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/'
 
 const buttonConsult = document.querySelector('.buttonConsult');
 const fieldInfo = document.querySelectorAll('.item-data');
 const inputSteamId = document.querySelector('.inputID');
 
-inputSteamId.value = '76561198145496259';
-
-const RequestConfig = {
-  options: {
-    method: 'GET',
-    headers: {
-      'Access-Control-Allow-Origin':'*',
-      'Access-Control-Allow-Headers': '*',
-      "Content-Type": "application/json",
-      'mode': 'no-cors',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-  },
-};
+const fieldKills = document.querySelector('#kills');
+const fieldDeaths = document.querySelector('#deaths');
+deaths
+const statusMessage = (status, message) => {
+  switch(status){
+    case 500:
+      alert('usuário não existe');
+    break;
+    case 403:
+      alert('Forbidden');    
+    break;
+    default:
+      alert('você precisa digitar algo');    
+  }
+}
 
 
 buttonConsult.addEventListener('click', () => {
   const valueInputSteamId = document.querySelector('.inputID').value;
   
-  fetch('https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?key=D1108BDE58274899E11D3C55998E2D60&steamid=76561198145496259&format=json&appid=730', RequestConfig.options).then(response =>{
-    console.log(response);
-  }).then(data =>
-  {
-    console.log(data);
+  fetch(`https://cs-stats-backend.herokuapp.com/${valueInputSteamId}`).then( response => {
+    if(response.status === 200){
+      response.json().then(responseJson => {
+        console.log(responseJson);
+        fieldKills.innerHTML = responseJson.playerstats.stats.find(item => { return item.name === "total_kills" }).value;
+        fieldDeaths.innerHTML = responseJson.playerstats.stats.find(item => { return item.name === "total_deaths" }).value;
+      })
+    } else{
+      statusMessage(response.status);
+    }
   })
+
 })

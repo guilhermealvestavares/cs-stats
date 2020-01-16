@@ -1,5 +1,6 @@
 body{
   margin-top:40px;
+  background-color: #21212E;
 }
 
 .inputID{
@@ -10,14 +11,25 @@ body{
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin:0 auto;
 }
 
 .show_infos__data{
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
+  display:flex;
+  justify-content: center;
+  align-items: center;;
+  margin-right:20px;
   border-radius: .25rem;
-  width: 200px;
-  height: 100px;
+  width: 235px;
+  height: 58px;
+  color: #fff;
+  background-color: rgba(0,0,0,.3);
+  opacity: 0.7;
+  color: #ffffff;
+  font-size:32px;
+}
+
+.show_infos__data p{
+  margin:0;
+  padding: 0;
 }
