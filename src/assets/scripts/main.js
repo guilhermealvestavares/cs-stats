@@ -7,9 +7,15 @@ const buttonConsult = document.querySelector('.buttonConsult');
 const fieldInfo = document.querySelectorAll('.item-data');
 const inputSteamId = document.querySelector('.inputID');
 
+inputSteamId.value = '76561198145496259';
+
 const fieldKills = document.querySelector('#kills');
 const fieldDeaths = document.querySelector('#deaths');
-deaths
+const fieldHeadShots = document.querySelector('#fieldHeadShots');
+const fieldRoundsWins = document.querySelector('#roundsWins');
+const fieldRoundPistol = document.querySelector('#fieldRoundPistol');
+
+
 const statusMessage = (status, message) => {
   switch(status){
     case 500:
@@ -33,6 +39,14 @@ buttonConsult.addEventListener('click', () => {
         console.log(responseJson);
         fieldKills.innerHTML = responseJson.playerstats.stats.find(item => { return item.name === "total_kills" }).value;
         fieldDeaths.innerHTML = responseJson.playerstats.stats.find(item => { return item.name === "total_deaths" }).value;
+        fieldHeadShots.innerHTML = responseJson.playerstats.stats.find(item => { return item.name === "total_kills_headshot" }).value;
+        fieldRoundsWins.innerHTML = responseJson.playerstats.stats.find(item => { return item.name === "total_wins" }).value;
+        fieldRoundPistol.innerHTML = responseJson.playerstats.stats.find(item => { return item.name === "total_wins_pistolround" }).value;
+
+        
+
+        
+        
       })
     } else{
       statusMessage(response.status);
